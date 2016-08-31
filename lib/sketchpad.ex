@@ -10,6 +10,7 @@ defmodule Sketchpad do
     children = [
       supervisor(Sketchpad.Endpoint, []),
       supervisor(Sketchpad.Presence, []),
+      worker(Sketchpad.Pad, ["pad:lobby"]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

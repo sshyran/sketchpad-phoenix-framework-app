@@ -299,7 +299,7 @@ export class Sketchpad {
 
   // Load a json object into the sketchpad
   // @return {object} - JSON object to load
-  loadJSON(data){ this.strokes = data.strokes }
+  loadJSON(data){ this.users = data }
 
   // Get a static image element of the canvas
   getImage(){ return '<img src="' + this.getImageURL() + '"/>' }

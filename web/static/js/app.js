@@ -18,13 +18,19 @@ let App = {
 
     this.padChannel = socket.channel("pad:lobby")
     this.padChannel.join()
-      .receive("ok", resp => console.log("joined!", resp) )
+      .receive("ok", ({data}) => {
+      })
       .receive("error", resp => console.log("join failed!", resp) )
 
     this.bind()
   },
 
   bind(){
+    this.padChannel.on("pad_request", () => {
+      console.log("got pad request from server")
+      this.padChannel.push("pad_ack", {img: this.pad.getImageURL()})
+    })
+
     this.exportButton.addEventListener("click", e => {
       e.preventDefault()
       window.open(this.pad.getImageURL())
